@@ -5,10 +5,10 @@ const API_URL = 'https://randomuser.me/api/'
 export const simpleAction = () => async (dispatch) => {
     try {
         const payload = {
-            results: 28
+            results: 4
         }
         const res = await axios.get(API_URL, { params: payload });
-        console.log(res.data);
+        console.log(res.data.results)
         dispatch({ type: 'GET_PERSONNEL_DATA', payload: res.data.results})
     }
     catch(e) {
