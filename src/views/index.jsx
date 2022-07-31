@@ -2,12 +2,55 @@ import '../App.css';
 import CardPersonnel from '../components/CardPersonnel';
 import { connect } from 'react-redux';
 import { simpleAction } from '../redux/action';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function IndexPage(props) {
+  let currentPage = 1;
+  const [personnelData, setPersonnelData] = useState([]);
   useEffect(() => {
     props.getPersonnelData();
+    const initialData = paginationHandler(props.personnel, currentPage, 4);
+    setPersonnelData(initialData);
   }, [])
+
+  const paginationHandler = (array, index, size) => {
+    // transform values
+    index = Math.abs(parseInt(index));
+    index = index > 0 ? index - 1 : index;
+    size = parseInt(size);
+    size = size < 1 ? 1 : size;
+
+    // filter
+    return [...(array.filter((value, n) => {
+        return (n >= (index * size)) && (n < ((index+1) * size))
+    }))]
+  }
+
+  const nextPage = () => {
+    currentPage++;
+
+    const paginationData = paginationHandler(props.personnel, currentPage, 4);
+    setPersonnelData(paginationData);
+
+    console.log(paginationHandler(personnelData, currentPage, 4))
+  }
+
+  const prevPage = () => {
+    currentPage--;
+
+    if (currentPage === 1) {
+      currentPage = 1;
+    }
+
+    const paginationData = paginationHandler(props.personnel, currentPage, 4);
+    setPersonnelData(paginationData);
+
+    console.log(paginationHandler(personnelData, currentPage, 4))
+  }
+
+  useEffect(() => {
+    paginationHandler(props.personnel, currentPage, 4);
+  },[personnelData, currentPage])
   return (
     <div className="App">
       <div className='bg-gray-300 min-h-screen md:col-span-2 w-full p-5'>
@@ -31,7 +74,7 @@ function IndexPage(props) {
         </div>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
           {
-            props.personnel && props.personnel.map((index, key) => (
+            personnelData && personnelData.map((index, key) => (
               <CardPersonnel
                 key={`key-index-${key}`}
                 firstName={index.name.first}
@@ -45,8 +88,8 @@ function IndexPage(props) {
           }
         </div>
         <div className='text-center mt-10 gap-4 text-blue-900'>
-          <button className='mr-10'>Previous Page</button>
-          <button>Next Page</button>
+          <button className='mr-10' onClick={() => prevPage()}>Previous Page</button>
+          <button onClick={() => nextPage()}>Next Page</button>
         </div>
       </div>
     </div>
