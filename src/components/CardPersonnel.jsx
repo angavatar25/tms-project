@@ -1,4 +1,5 @@
 import React from 'react'
+import { parseDateOfBirth } from '../moment';
 
 export default function CardPersonnel(props) {
   const {
@@ -48,7 +49,7 @@ export default function CardPersonnel(props) {
           <div className='hidden md:block'>
             <div className='mt-2'>
               <p className='font-semibold'>Birthday</p>
-              <p className='text-xl'>{birthdayDate}</p>
+              <p className='text-xl'>{parseDateOfBirth(birthdayDate)}</p>
             </div>
             <div className='mt-2'>
               <p className='font-semibold'>Email</p>
