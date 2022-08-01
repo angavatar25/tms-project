@@ -44,7 +44,6 @@ function IndexPage(props) {
 
   useEffect(() => {
     const initialData = paginationHandler(props.personnel, currentPage, 4);
-    console.log(currentPage);
     setPersonnelData(initialData);
   },[currentPage])
   return (
