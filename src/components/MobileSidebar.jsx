@@ -1,8 +1,12 @@
-import React from 'react'
-import { faCalendar, faHouse, faList } from '@fortawesome/free-solid-svg-icons'
+import { faCalendar, faHouse, faList, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react'
 
-export default function Sidebar() {
+export default function MobileSidebar(props) {
+  const {
+    closeSidebar,
+  } = props
+
   const sidebarMenu = [
     {
       id: 1,
@@ -20,9 +24,15 @@ export default function Sidebar() {
       icon: faCalendar,
     },
   ]
+
   return (
-    <div className='sidebar bg-gray-200 min-h-screen p-5 hidden md:block'>
-      <ul className='text-blue-900 text-3xl leading-snug mt-5'>
+    <div className='sidebar bg-gray-200 min-h-screen p-5 fixed w-full md:hidden'>
+        <button
+          className='text-blue-900 mb-4'
+          onClick={closeSidebar}>
+            <FontAwesomeIcon icon={faTimesCircle} size="2x" />
+        </button>
+        <ul className='text-blue-900 text-3xl leading-snug mt-5'>
           {
             sidebarMenu.map((index) => (
               <li className='mb-3' key={index.id}>
