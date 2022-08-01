@@ -15,7 +15,7 @@ export default function Navbar() {
             closeSidebar={handleSidebar}
           />
         }
-        <div className='flex justify-between p-5'>
+        <div className='flex justify-between p-5 w-full bg-white'>
             <div className='image-container flex'>
                 <button className='hamburger-icon my-auto mr-3 md:hidden' onClick={handleSidebar}>
                     <div className='w-8 h-1 bg-blue-900'></div>
