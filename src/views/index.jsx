@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function IndexPage(props) {
-  let currentPage = 1;
   let navigate = useNavigate();
   const [personnelData, setPersonnelData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const paginationHandler = (array, index, size) => {
     index = Math.abs(parseInt(index));
@@ -22,21 +22,15 @@ function IndexPage(props) {
   }
 
   const nextPage = () => {
-    currentPage++;
-
-    const paginationData = paginationHandler(props.personnel, currentPage, 4);
-    setPersonnelData(paginationData);
+    setCurrentPage(currentPage + 1);
   }
 
   const prevPage = () => {
-    currentPage--;
+    setCurrentPage(currentPage - 1)
 
     if (currentPage === 1) {
-      currentPage = 1;
+      setCurrentPage(1);
     }
-
-    const paginationData = paginationHandler(props.personnel, currentPage, 4);
-    setPersonnelData(paginationData);
   }
 
   const personnelDetail = (data) => {
@@ -50,6 +44,7 @@ function IndexPage(props) {
 
   useEffect(() => {
     const initialData = paginationHandler(props.personnel, currentPage, 4);
+    console.log(currentPage);
     setPersonnelData(initialData);
   },[currentPage])
   return (
