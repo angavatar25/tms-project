@@ -58,8 +58,8 @@ function IndexPage(props) {
   },[currentPage])
   return (
     <div className="App">
-      <div className='bg-gray-300 h-full md:col-span-2 w-full p-5'>
-        <div className='block md:flex justify-between bg-white p-3'>
+      <div className='page-container'>
+        <div className='personnel-list-container'>
           <div className='personnel-list'>
             <p className='text-4xl text-pink-600 uppercase font-bold'>Personnel List</p>
             <p className='text-blue-900 text-xl mt-2'>List of all personnels</p>
@@ -75,7 +75,7 @@ function IndexPage(props) {
                 className='w-full border-none focus:outline-none'
               />
             </div>
-            <button className='uppercase bg-pink-600 text-white py-3 px-6 rounded-md w-full md:w-1/2 mt-3 md:mt-0'>
+            <button className='uppercase bg-pink-600 btn-base w-full md:w-1/2 mt-3 md:mt-0'>
               Add Personnel +
             </button>
           </div>
