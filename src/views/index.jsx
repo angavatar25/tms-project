@@ -3,24 +3,19 @@ import CardPersonnel from '../components/CardPersonnel';
 import { connect } from 'react-redux';
 import { simpleAction } from '../redux/action';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function IndexPage(props) {
   let currentPage = 1;
+  let navigate = useNavigate();
   const [personnelData, setPersonnelData] = useState([]);
-  useEffect(() => {
-    props.getPersonnelData();
-    const initialData = paginationHandler(props.personnel, currentPage, 4);
-    setPersonnelData(initialData);
-  }, [])
 
   const paginationHandler = (array, index, size) => {
-    // transform values
     index = Math.abs(parseInt(index));
     index = index > 0 ? index - 1 : index;
     size = parseInt(size);
     size = size < 1 ? 1 : size;
 
-    // filter
     return [...(array.filter((value, n) => {
         return (n >= (index * size)) && (n < ((index+1) * size))
     }))]
@@ -31,8 +26,6 @@ function IndexPage(props) {
 
     const paginationData = paginationHandler(props.personnel, currentPage, 4);
     setPersonnelData(paginationData);
-
-    console.log(paginationHandler(personnelData, currentPage, 4))
   }
 
   const prevPage = () => {
@@ -44,13 +37,21 @@ function IndexPage(props) {
 
     const paginationData = paginationHandler(props.personnel, currentPage, 4);
     setPersonnelData(paginationData);
+  }
 
-    console.log(paginationHandler(personnelData, currentPage, 4))
+  const personnelDetail = (data) => {
+    localStorage.setItem('personnelData', JSON.stringify(data));
+    navigate('/personnel-detail')
   }
 
   useEffect(() => {
-    paginationHandler(props.personnel, currentPage, 4);
-  },[personnelData, currentPage])
+    props.getPersonnelData();
+  }, [])
+
+  useEffect(() => {
+    const initialData = paginationHandler(props.personnel, currentPage, 4);
+    setPersonnelData(initialData);
+  },[currentPage])
   return (
     <div className="App">
       <div className='bg-gray-300 min-h-screen md:col-span-2 w-full p-5'>
@@ -83,6 +84,7 @@ function IndexPage(props) {
                 birthdayDate={index.dob.date}
                 emailAddress={index.email}
                 personnelId={index.id.value}
+                goToPersonnelDetail={() => personnelDetail(index)}
               />
             ))
           }

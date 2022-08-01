@@ -2,6 +2,8 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import IndexPage from './views';
+import './styles/App.scss';
+import PersonnelDetail from './views/PersonnelDetail';
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <div className='bg-gray-300 md:col-span-2'>
           <Routes>
             <Route path='/' element={<IndexPage/>}></Route>
+            <Route path='/personnel-detail' element={<PersonnelDetail/>}></Route>
           </Routes>
         </div>
       </div>
