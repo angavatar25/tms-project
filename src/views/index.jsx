@@ -11,6 +11,8 @@ function IndexPage(props) {
   let navigate = useNavigate();
   const [personnelData, setPersonnelData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showPerPage] = useState(4);
+  const [pageCount, setPageCount] = useState(0);
 
   const paginationHandler = (array, index, size) => {
     index = Math.abs(parseInt(index));
@@ -19,12 +21,16 @@ function IndexPage(props) {
     size = size < 1 ? 1 : size;
 
     return [...(array.filter((value, n) => {
-        return (n >= (index * size)) && (n < ((index+1) * size))
+        return (n >= (index * size)) && (n < ((index + 1) * size))
     }))]
   }
 
   const nextPage = () => {
     setCurrentPage(currentPage + 1);
+
+    if (currentPage === pageCount) {
+      setCurrentPage(pageCount);
+    }
   }
 
   const prevPage = () => {
@@ -42,15 +48,17 @@ function IndexPage(props) {
 
   useEffect(() => {
     props.getPersonnelData();
+    const pageCountDivide = props.personnel.length / showPerPage;
+    setPageCount(pageCountDivide);
   }, [])
 
   useEffect(() => {
-    const initialData = paginationHandler(props.personnel, currentPage, 4);
+    const initialData = paginationHandler(props.personnel, currentPage, showPerPage);
     setPersonnelData(initialData);
   },[currentPage])
   return (
     <div className="App">
-      <div className='bg-gray-300 min-h-screen md:col-span-2 w-full p-5'>
+      <div className='bg-gray-300 h-full md:col-span-2 w-full p-5'>
         <div className='block md:flex justify-between bg-white p-3'>
           <div className='personnel-list'>
             <p className='text-4xl text-pink-600 uppercase font-bold'>Personnel List</p>
@@ -89,11 +97,11 @@ function IndexPage(props) {
           }
         </div>
         <div className='text-center mt-10 gap-4 text-blue-900'>
-          <button className='mr-10' onClick={() => prevPage()}>
+          <button className={`mr-10 ${currentPage === 1 ? 'text-blue-400' : 'text-blue-900'}`} onClick={() => prevPage()}>
             <FontAwesomeIcon icon={faChevronLeft} className="mr-3" />
             Previouse Page
           </button>
-          <button onClick={() => nextPage()}>
+          <button className={`${currentPage === pageCount ? ' text-blue-400' : 'text-blue-900'}`} onClick={() => nextPage()}>
             Next Page
             <FontAwesomeIcon icon={faChevronRight} className="ml-3" />
           </button>
