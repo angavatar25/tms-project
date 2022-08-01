@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { parseDateOfBirth } from '../moment';
 
 export default function PersonnelDetail() {
   const loadPersonnelData = localStorage.getItem('personnelData');
@@ -38,7 +39,7 @@ export default function PersonnelDetail() {
           </div>
           <div className='mt-2'>
             <p className='font-semibold'>Birthday</p>
-            <p className='text-xl'>{parsedPersonnelData.dob.date}</p>
+            <p className='text-xl'>{parseDateOfBirth(parsedPersonnelData.dob.date)}</p>
           </div>
         </div>
       </div>
