@@ -15,6 +15,14 @@ export default function PersonnelDetail() {
   const returnToMainPage = () => {
     navigate('/');
   }
+
+  const personnelData = {
+    "name": parsedPersonnelData.name.first + " " + parsedPersonnelData.name.last,
+    "telephone": parsedPersonnelData.cell,
+    "location": personnelLocationDetail(),
+    "email": parsedPersonnelData.email,
+    "birthday": parseDateOfBirth(parsedPersonnelData.dob.date)
+  }
   return (
     <div>
       <div className='bg-gray-300 min-h-screen w-full p-5'>
@@ -26,26 +34,14 @@ export default function PersonnelDetail() {
           </button>
         <div className='bg-white text-blue-900 p-5'>
           <p className='text-4xl mb-5 text-pink-600 uppercase font-bold'>Personnel Detail</p>
-          <div className='mt-2'>
-            <p className='font-semibold'>Name</p>
-            <p className='text-xl'>{parsedPersonnelData.name.first} {parsedPersonnelData.name.last}</p>
-          </div>
-          <div className='mt-2'>
-            <p className='font-semibold'>Telephone</p>
-            <p className='text-xl'>{parsedPersonnelData.cell}</p>
-          </div>
-          <div className='mt-2'>
-            <p className='font-semibold'>Location</p>
-            <p className='text-xl'>{personnelLocationDetail()}</p>
-          </div>
-          <div className='mt-2'>
-            <p className='font-semibold'>Email</p>
-            <p className='text-xl'>{parsedPersonnelData.email}</p>
-          </div>
-          <div className='mt-2'>
-            <p className='font-semibold'>Birthday</p>
-            <p className='text-xl'>{parseDateOfBirth(parsedPersonnelData.dob.date)}</p>
-          </div>
+          {
+            personnelData && Object.entries(personnelData).map(([key, value]) => (
+              <div className='mt-2' key={`personnel-detail-${key}`}>
+                <p className='font-semibold capitalize'>{key}</p>
+                <p className='text-xl'>{value}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>

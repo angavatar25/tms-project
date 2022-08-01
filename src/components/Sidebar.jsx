@@ -21,8 +21,8 @@ export default function Sidebar() {
     },
   ]
   return (
-    <div className='sidebar bg-gray-200 min-h-screen p-5 hidden md:block'>
-      <ul className='text-blue-900 text-3xl leading-snug mt-5'>
+    <div className='sidebar hidden md:block'>
+      <ul>
           {
             sidebarMenu.map((index) => (
               <li className='mb-3' key={index.id}>

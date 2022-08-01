@@ -1,6 +1,6 @@
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { parseDateOfBirth } from '../moment';
 
 export default function CardPersonnel(props) {
@@ -23,8 +23,8 @@ export default function CardPersonnel(props) {
 
   return (
     <div>
-      <div className='bg-white p-3 text-blue-900 cursor-pointer' onClick={goToPersonnelDetail}>
-        <div className="upper-section flex justify-between border-b border-gray-300 pb-3">
+      <div className='card-container' onClick={goToPersonnelDetail}>
+        <div className="upper-section">
           <p className='text-blue-900'>
             Personnel ID: <span className='text-pink-600'>{checkPersonnelId()}</span>
           </p>
@@ -33,8 +33,8 @@ export default function CardPersonnel(props) {
           </div>
         </div>
         <div className="photo-section">
-          <div className=' w-24 h-24 rounded-full border border-blue-900 mx-auto my-10'>
-            <span className='m-auto flex justify-center items-center h-full'>Photo</span>
+          <div className='photo-wrapper'>
+            <span className='photo-text'>Photo</span>
           </div>
         </div>
         <div>

@@ -1,0 +1,6 @@
+.page-container {
+    @apply bg-gray-300 h-full md:col-span-2 w-full p-5;
+    .personnel-list-container {
+        @apply block md:flex justify-between bg-white p-3;
+    }
+}
