@@ -7,7 +7,8 @@ export default function CardPersonnel(props) {
     phoneNumber,
     birthdayDate,
     emailAddress,
-    personnelId
+    personnelId,
+    goToPersonnelDetail,
   } = props
 
   const checkPersonnelId = () => {
@@ -19,7 +20,7 @@ export default function CardPersonnel(props) {
 
   return (
     <div>
-      <div className='bg-white p-3 text-blue-900'>
+      <div className='bg-white p-3 text-blue-900' onClick={goToPersonnelDetail}>
         <div className="upper-section flex justify-between border-b border-gray-300 pb-3">
           <p className='text-blue-900'>
             Personnel ID: <span className='text-pink-600'>{checkPersonnelId()}</span>
