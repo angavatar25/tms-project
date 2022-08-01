@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { simpleAction } from '../redux/action';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 function IndexPage(props) {
   let navigate = useNavigate();
@@ -55,13 +57,16 @@ function IndexPage(props) {
             <p className='text-blue-900 text-xl mt-2'>List of all personnels</p>
           </div>
           <div className='personnel-list my-auto md:flex mt-5 md:mt-0'>
-            <input
-              type="text"
-              name=""
-              id=""
-              placeholder='Find Personnels'
-              className='w-full md:w-1/2 border border-gray-500 py-3 px-6 rounded-md mr-4'
-            />
+            <div className='w-full md:w-1/2 border border-gray-500 leading-loose pl-6 rounded-md mr-4 flex'>
+              <FontAwesomeIcon icon={faMagnifyingGlass} className="text-pink-600 my-auto mr-3" />
+              <input
+                type="text"
+                name=""
+                id=""
+                placeholder='Find Personnels'
+                className='w-full border-none focus:outline-none'
+              />
+            </div>
             <button className='uppercase bg-pink-600 text-white py-3 px-6 rounded-md w-full md:w-1/2 mt-3 md:mt-0'>
               Add Personnel +
             </button>
@@ -84,8 +89,14 @@ function IndexPage(props) {
           }
         </div>
         <div className='text-center mt-10 gap-4 text-blue-900'>
-          <button className='mr-10' onClick={() => prevPage()}>Previous Page</button>
-          <button onClick={() => nextPage()}>Next Page</button>
+          <button className='mr-10' onClick={() => prevPage()}>
+            <FontAwesomeIcon icon={faChevronLeft} className="mr-3" />
+            Previouse Page
+          </button>
+          <button onClick={() => nextPage()}>
+            Next Page
+            <FontAwesomeIcon icon={faChevronRight} className="ml-3" />
+          </button>
         </div>
       </div>
     </div>

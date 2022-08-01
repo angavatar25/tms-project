@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { parseDateOfBirth } from '../moment';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function PersonnelDetail() {
   const loadPersonnelData = localStorage.getItem('personnelData');
@@ -18,7 +20,10 @@ export default function PersonnelDetail() {
       <div className='bg-gray-300 min-h-screen w-full p-5'>
         <button
           onClick={() => returnToMainPage()}
-          className='mb-5 text-white bg-blue-900 py-2 px-6 rounded-md'>Kembali</button>
+          className='mb-5 text-white bg-blue-900 py-2 px-6 rounded-md'>
+            <FontAwesomeIcon icon={faChevronLeft} className="mr-3"/>
+            Kembali
+          </button>
         <div className='bg-white text-blue-900 p-5'>
           <p className='text-4xl mb-5 text-pink-600 uppercase font-bold'>Personnel Detail</p>
           <div className='mt-2'>

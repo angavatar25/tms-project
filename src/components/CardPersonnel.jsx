@@ -1,3 +1,5 @@
+import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react'
 import { parseDateOfBirth } from '../moment';
 
@@ -27,9 +29,7 @@ export default function CardPersonnel(props) {
             Personnel ID: <span className='text-pink-600'>{checkPersonnelId()}</span>
           </p>
           <div>
-            <button>
-              Settings
-            </button>
+            <FontAwesomeIcon icon={faEllipsis} />
           </div>
         </div>
         <div className="photo-section">
