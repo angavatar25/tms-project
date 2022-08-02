@@ -64,8 +64,8 @@ function IndexPage(props) {
             <p className='text-4xl text-pink-600 uppercase font-bold'>Personnel List</p>
             <p className='text-blue-900 text-xl mt-2'>List of all personnels</p>
           </div>
-          <div className='personnel-list my-auto md:flex mt-5 md:mt-0'>
-            <div className='w-full md:w-1/2 border border-gray-500 leading-loose pl-6 rounded-md mr-4 flex'>
+          <div className='button-section-personnel my-auto md:flex mt-5 md:mt-0'>
+            <div className='search-bar w-full md:w-1/2'>
               <FontAwesomeIcon icon={faMagnifyingGlass} className="text-pink-600 my-auto mr-3" />
               <input
                 type="text"
