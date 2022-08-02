@@ -1,3 +1,7 @@
 .btn-base {
     @apply text-white py-3 px-6 rounded-md;
 }
+
+.search-bar {
+    @apply border border-gray-500 leading-loose pl-6 rounded-md mr-4 flex;
+}
